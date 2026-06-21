@@ -31,10 +31,10 @@ export default function Hero({ onContact }: Props) {
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
             I'm Rui — an Engineering Manager with 15+ years across software engineering and
-            leadership. Today I lead senior teams at{' '}
+            leadership. Today, I lead senior engineering teams at{' '}
             <span className="text-paper">Volvo Cars</span> building the platform behind Volvo's
-            Connect web apps, and I apply AI-assisted workflows to help good engineers move faster
-            without lowering the bar.
+            global retailer network, and drive AI-assisted workflows that improve engineering
+            productivity and delivery flow.
           </p>
 
           {/* CTA row */}
@@ -119,7 +119,7 @@ export default function Hero({ onContact }: Props) {
               >
                 <div className="h-full w-full overflow-hidden rounded-full bg-surface">
                   <img
-                    src="/rui-photo.jpg"
+                    src="/RuiBaiaoAvatar.jpg"
                     alt="Rui Baiao"
                     className="h-full w-full object-cover object-center"
                     onError={(e) => {
