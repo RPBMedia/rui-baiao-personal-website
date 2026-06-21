@@ -47,7 +47,6 @@ export default function Footer() {
             <a href={links.music} target="_blank" rel="noreferrer" className="hover:text-paper">
               Eon Rift
             </a>
-            <span className="hidden text-muted/60 sm:inline">Built with React, TypeScript & Tailwind</span>
           </div>
         </div>
       </div>

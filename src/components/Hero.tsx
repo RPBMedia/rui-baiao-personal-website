@@ -24,8 +24,9 @@ export default function Hero({ onContact }: Props) {
           </p>
 
           <h1 className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-paper sm:text-5xl lg:text-6xl">
-            Building scalable platforms,{' '}
-            <span className="text-accent">strong teams</span>, and AI-enabled delivery.
+            Software Engineering.{' '}
+            <span className="text-accent">Team Leadership.</span>{' '}
+            AI Adoption.
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
