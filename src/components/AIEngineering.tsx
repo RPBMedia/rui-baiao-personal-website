@@ -6,7 +6,7 @@ export default function AIEngineering() {
   return (
     <Section id="ai" className="border-t border-white/10">
       <Eyebrow>AI-enabled engineering</Eyebrow>
-      <SectionHeading>AI as leverage, not magic.</SectionHeading>
+      <SectionHeading>AI-Enabled Engineering</SectionHeading>
       <Lead>
         I focus on applying AI where it creates real engineering leverage: reducing friction,
         accelerating codebase understanding, improving documentation, supporting prototyping, and
