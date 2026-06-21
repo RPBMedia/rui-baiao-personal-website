@@ -12,7 +12,7 @@ export function Section({
   className?: string
 }) {
   return (
-    <section id={id} className={`relative scroll-mt-24 py-20 sm:py-28 ${className}`}>
+    <section id={id} className={`relative scroll-mt-24 py-20 sm:py-28 section-gradient ${className}`}>
       <div className="container-x">{children}</div>
     </section>
   )
@@ -51,10 +51,8 @@ export function Card({
   return (
     <div
       className={[
-        'rounded-2xl border border-white/10 bg-white/[0.025] p-6 backdrop-blur-sm',
-        interactive
-          ? 'transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.045]'
-          : '',
+        'card-3d rounded-2xl p-6',
+        interactive ? 'card-3d-interactive' : '',
         className,
       ].join(' ')}
     >
@@ -65,7 +63,7 @@ export function Card({
 
 export function Chip({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-muted transition-colors hover:border-accent/40 hover:text-paper">
+    <span className="inline-flex items-center rounded-full border border-accent/15 bg-accent/[0.04] px-3 py-1.5 text-sm text-silver transition-colors hover:border-accent/35 hover:text-paper">
       {children}
     </span>
   )

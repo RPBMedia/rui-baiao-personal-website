@@ -4,13 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#0a0a0c',
-        'ink-soft': '#0e0e12',
-        surface: '#15151a',
-        paper: '#ECECEF',
-        muted: '#9A9AA6',
-        accent: '#FF3B30',
-        'accent-soft': '#FF6A61',
+        ink: '#060D1C',
+        'ink-soft': '#0B1928',
+        surface: '#0D1E38',
+        paper: '#D8E8F8',
+        muted: '#6B85A8',
+        accent: '#3B9FFF',
+        'accent-soft': '#6AB6FF',
+        silver: '#9AB2C8',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],

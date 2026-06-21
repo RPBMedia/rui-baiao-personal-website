@@ -13,8 +13,8 @@ export const profile = {
 export const links = {
   email: `mailto:${profile.email}`,
   github: 'https://github.com/RPBMedia',
-  linkedin: 'https://www.linkedin.com/in/rui-baiao',
-  music: 'https://eonrift.com',
+  linkedin: 'https://www.linkedin.com/in/ruibaiao/',
+  music: 'https://open.spotify.com/artist/6lNAaGeL0T2a4zF750AH95?si=kbcuUB-hQRmO2s7Dc1cGlg',
 }
 
 export const stats = [

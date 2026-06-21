@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react'
-import { navItems, links } from '../data'
+import { navItems } from '../data'
 
-export default function Nav() {
+interface Props {
+  onContact: () => void
+}
+
+export default function Nav({ onContact }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -16,12 +20,14 @@ export default function Nav() {
     <header
       className={[
         'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
-        scrolled ? 'border-b border-white/10 bg-ink/80 backdrop-blur-md' : 'border-b border-transparent',
+        scrolled
+          ? 'border-b border-accent/10 bg-ink/85 backdrop-blur-md'
+          : 'border-b border-transparent',
       ].join(' ')}
     >
       <nav className="container-x flex h-16 items-center justify-between">
         <a href="#top" className="group flex items-center gap-2.5" aria-label="Rui Baiao — home">
-          <span className="grid h-8 w-8 place-items-center rounded-lg border border-white/15 bg-white/[0.04] font-mono text-sm font-medium text-paper transition-colors group-hover:border-accent/60">
+          <span className="grid h-8 w-8 place-items-center rounded-lg border border-accent/20 bg-accent/[0.05] font-mono text-sm font-medium text-paper transition-colors group-hover:border-accent/50 group-hover:bg-accent/10">
             RB
           </span>
           <span className="text-sm font-medium tracking-tight text-paper">Rui Baiao</span>
@@ -41,12 +47,13 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a
-            href={links.email}
-            className="hidden rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-sm font-medium text-paper transition-colors hover:border-accent/60 hover:bg-accent/10 sm:inline-flex"
+          <button
+            type="button"
+            onClick={onContact}
+            className="hidden rounded-full border border-accent/25 bg-accent/[0.05] px-4 py-2 text-sm font-medium text-paper transition-colors hover:border-accent/50 hover:bg-accent/10 sm:inline-flex"
           >
             Get in touch
-          </a>
+          </button>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -70,19 +77,28 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-ink/95 backdrop-blur-md lg:hidden">
+        <div className="border-t border-accent/10 bg-ink/95 backdrop-blur-md lg:hidden">
           <ul className="container-x grid gap-1 py-4">
             {navItems.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
                   onClick={() => setOpen(false)}
-                  className="block rounded-md px-3 py-2.5 text-base text-muted transition-colors hover:bg-white/5 hover:text-paper"
+                  className="block rounded-md px-3 py-2.5 text-base text-muted transition-colors hover:bg-accent/[0.05] hover:text-paper"
                 >
                   {item.label}
                 </a>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                onClick={() => { setOpen(false); onContact() }}
+                className="mt-1 w-full rounded-md px-3 py-2.5 text-left text-base text-accent transition-colors hover:bg-accent/[0.05]"
+              >
+                Get in touch
+              </button>
+            </li>
           </ul>
         </div>
       )}

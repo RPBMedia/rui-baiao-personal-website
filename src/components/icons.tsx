@@ -111,3 +111,33 @@ export function Check(props: IconProps) {
     </svg>
   )
 }
+
+export function X(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  )
+}
+
+export function Download(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
+    </svg>
+  )
+}
+
+export function Spotify(props: IconProps) {
+  return (
+    <svg {...base} {...props} strokeWidth={1.4}>
+      <circle cx="12" cy="12" r="10" />
+      <path d="M8 13.2c2.5-1 5.5-.9 7.8.4" />
+      <path d="M7 10.4c3-1.3 6.5-1.1 9.3.5" />
+      <path d="M9 16c2-0.8 4.5-.7 6.5.3" />
+    </svg>
+  )
+}

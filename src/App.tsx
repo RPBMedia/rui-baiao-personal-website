@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -9,13 +10,24 @@ import CareerTimeline from './components/CareerTimeline'
 import CreativeSide from './components/CreativeSide'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import ContactModal from './components/ContactModal'
 
 export default function App() {
+  const [contactOpen, setContactOpen] = useState(false)
+  const openContact = () => setContactOpen(true)
+
   return (
-    <div className="min-h-screen bg-ink text-paper">
-      <Nav />
+    <div className="min-h-screen text-paper">
+      {/* Global ambient blue gradient orbs — fixed so they persist through scroll */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
+        <div className="absolute -top-40 left-1/2 h-[40rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/[0.07] blur-[140px]" />
+        <div className="absolute top-[55vh] right-[-12rem] h-[32rem] w-[32rem] rounded-full bg-accent/[0.04] blur-[110px]" />
+        <div className="absolute bottom-[15vh] left-[-8rem] h-[28rem] w-[28rem] rounded-full bg-accent/[0.035] blur-[100px]" />
+      </div>
+
+      <Nav onContact={openContact} />
       <main>
-        <Hero />
+        <Hero onContact={openContact} />
         <About />
         <LeadershipPhilosophy />
         <AIEngineering />
@@ -23,9 +35,10 @@ export default function App() {
         <Skills />
         <CareerTimeline />
         <CreativeSide />
-        <Contact />
+        <Contact onContact={openContact} />
       </main>
       <Footer />
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   )
 }
