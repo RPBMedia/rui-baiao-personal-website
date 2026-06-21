@@ -219,7 +219,7 @@ export const timeline: TimelineItem[] = [
     role: 'Engineering Manager',
     company: 'Volvo Cars',
     location: 'Stockholm',
-    note: "Leading the platform behind Volvo's Connect web apps.",
+    note: "Leading development and delivery of the platform behind Volvo's global retailer network.",
     kind: 'work',
   },
   {
