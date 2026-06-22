@@ -5,7 +5,7 @@ export default function Skills() {
   return (
     <Section id="skills" className="border-t border-white/10">
       <Eyebrow>Technical & leadership skillset</Eyebrow>
-      <SectionHeading>A toolkit spanning people, platforms, and AI.</SectionHeading>
+      <SectionHeading>A toolkit spanning people, software, and creativity.</SectionHeading>
 
       <div className="mt-12 grid gap-5 md:grid-cols-2">
         {skillGroups.map((group) => (
