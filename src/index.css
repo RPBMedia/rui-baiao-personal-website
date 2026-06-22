@@ -36,7 +36,7 @@
     @apply border border-accent/10 bg-surface/50 backdrop-blur-sm;
   }
 
-  /* 3D card with gradient depth and blue shadow */
+  /* 3D card */
   .card-3d {
     background: linear-gradient(145deg, rgba(15, 40, 80, 0.85) 0%, rgba(6, 13, 28, 0.92) 100%);
     border: 1px solid rgba(59, 159, 255, 0.14);
@@ -61,7 +61,7 @@
   }
 }
 
-/* Blue-tinted engineering-grid backdrop. */
+/* Blue-tinted engineering grid */
 .bg-grid {
   background-image:
     linear-gradient(to right, rgba(59, 159, 255, 0.045) 1px, transparent 1px),
@@ -69,13 +69,13 @@
   background-size: 60px 60px;
 }
 
-/* Radial vignette mask helper for soft fade-outs. */
+/* Radial vignette mask */
 .mask-radial {
   -webkit-mask-image: radial-gradient(70% 60% at 50% 35%, #000 40%, transparent 100%);
   mask-image: radial-gradient(70% 60% at 50% 35%, #000 40%, transparent 100%);
 }
 
-/* Section gradient dividers — subtle horizontal shine between sections */
+/* Subtle horizontal shimmer between sections */
 .section-gradient {
   position: relative;
 }
@@ -88,96 +88,128 @@
   background: linear-gradient(90deg, transparent, rgba(59, 159, 255, 0.2) 30%, rgba(59, 159, 255, 0.35) 50%, rgba(59, 159, 255, 0.2) 70%, transparent);
 }
 
-/* ── Hero network topology animation ─────────────────────────────────── */
 
-/* Node pulse — shared base, each node gets its own delay + duration */
-.hn { animation: hn-pulse 5s ease-in-out infinite; }
-.hn-a { animation-delay:  0s;    animation-duration: 4.5s; }
-.hn-b { animation-delay: -1.2s;  animation-duration: 5.5s; }
-.hn-c { animation-delay: -2.8s;  animation-duration: 4s;   }
-.hn-d { animation-delay: -0.7s;  animation-duration: 6s;   }
-.hn-e { animation-delay: -3.5s;  animation-duration: 5s;   }
-.hn-f { animation-delay: -1.8s;  animation-duration: 7s;   }
-.hn-g { animation-delay: -4.2s;  animation-duration: 5.5s; }
-.hn-h { animation-delay: -2.1s;  animation-duration: 4.5s; }
-.hn-i { animation-delay: -3.3s;  animation-duration: 6.5s; }
-.hn-j { animation-delay: -0.5s;  animation-duration: 8s;   }
-.hn-k { animation-delay: -1.5s;  animation-duration: 5s;   }
-.hn-l { animation-delay: -3.8s;  animation-duration: 6s;   }
+/* ═══════════════════════════════════════════════════════════
+   Global network canvas animation
+   (NetworkCanvas.tsx — fixed full-page backdrop)
+   ═══════════════════════════════════════════════════════════ */
 
-@keyframes hn-pulse {
-  0%, 100% { opacity: 0.18; }
+/* Core dot: breathes opacity from dim → full brightness */
+.nw-core {
+  animation: nw-core-pulse 5s ease-in-out infinite;
+}
+
+/* Glow halo: in phase with core, goes from invisible → visible */
+.nw-glow {
+  animation: nw-glow-pulse 5s ease-in-out infinite;
+}
+
+@keyframes nw-core-pulse {
+  0%, 100% { opacity: 0.12; }
   50%       { opacity: 1;    }
 }
 
-/* Two nodes drift very slowly — translate only, no origin issues */
-.hn-drift-1 {
-  animation:
-    hn-pulse       6s ease-in-out  infinite -0.7s,
-    hn-drift-move  28s ease-in-out infinite;
-}
-.hn-drift-2 {
-  animation:
-    hn-pulse         5.5s ease-in-out infinite -4.2s,
-    hn-drift-move-2  34s  ease-in-out infinite;
+@keyframes nw-glow-pulse {
+  0%, 100% { opacity: 0;   }
+  50%       { opacity: 1;  }
 }
 
-@keyframes hn-drift-move {
-  0%,  100% { transform: translate(0px,   0px);  }
-  25%        { transform: translate(6px,  -10px); }
-  50%        { transform: translate(-4px,  7px);  }
-  75%        { transform: translate(8px,   3px);  }
+/* ── Drift variants: 8 unique slow-movement paths ── */
+/* Class sets keyframe name + duration; per-node delay comes from inline style */
+.nw-drift-A { animation: nw-drift-A 24s ease-in-out infinite; }
+.nw-drift-B { animation: nw-drift-B 20s ease-in-out infinite; }
+.nw-drift-C { animation: nw-drift-C 28s ease-in-out infinite; }
+.nw-drift-D { animation: nw-drift-D 32s ease-in-out infinite; }
+.nw-drift-E { animation: nw-drift-E 19s ease-in-out infinite; }
+.nw-drift-F { animation: nw-drift-F 26s ease-in-out infinite; }
+.nw-drift-G { animation: nw-drift-G 22s ease-in-out infinite; }
+.nw-drift-H { animation: nw-drift-H 30s ease-in-out infinite; }
+
+@keyframes nw-drift-A {
+  0%,100% { transform: translate(  0px,   0px); }
+  25%      { transform: translate(  7px,  -9px); }
+  50%      { transform: translate( -5px,   6px); }
+  75%      { transform: translate(  8px,   4px); }
+}
+@keyframes nw-drift-B {
+  0%,100% { transform: translate(  0px,   0px); }
+  30%      { transform: translate( -8px,  -7px); }
+  60%      { transform: translate(  5px,  10px); }
+  80%      { transform: translate( -3px,  -4px); }
+}
+@keyframes nw-drift-C {
+  0%,100% { transform: translate(  0px,   0px); }
+  20%      { transform: translate(  6px,   5px); }
+  45%      { transform: translate( -7px,   8px); }
+  70%      { transform: translate(  9px,  -6px); }
+}
+@keyframes nw-drift-D {
+  0%,100% { transform: translate(  0px,   0px); }
+  35%      { transform: translate( -6px,  10px); }
+  65%      { transform: translate(  5px,  -8px); }
+}
+@keyframes nw-drift-E {
+  0%,100% { transform: translate(  0px,   0px); }
+  25%      { transform: translate( 10px,  -5px); }
+  50%      { transform: translate( -4px,  -9px); }
+  75%      { transform: translate( -7px,   6px); }
+}
+@keyframes nw-drift-F {
+  0%,100% { transform: translate(  0px,   0px); }
+  33%      { transform: translate(  5px,  11px); }
+  66%      { transform: translate( -9px,  -4px); }
+}
+@keyframes nw-drift-G {
+  0%,100% { transform: translate(  0px,   0px); }
+  20%      { transform: translate( -7px,   5px); }
+  40%      { transform: translate(  6px,  -8px); }
+  60%      { transform: translate(  9px,   7px); }
+  80%      { transform: translate( -5px,  -6px); }
+}
+@keyframes nw-drift-H {
+  0%,100% { transform: translate(  0px,   0px); }
+  25%      { transform: translate(  4px,   6px); }
+  50%      { transform: translate( -3px,  -5px); }
+  75%      { transform: translate(  5px,  -3px); }
 }
 
-@keyframes hn-drift-move-2 {
-  0%,  100% { transform: translate(0px,   0px); }
-  30%        { transform: translate(-8px, -6px); }
-  65%        { transform: translate(6px,  10px); }
-  80%        { transform: translate(-3px, -4px); }
+/* ── Data-flow pulses (dashed packet traveling along an edge) ── */
+.nw-flow-A { animation: nw-flow-A  9s linear infinite;     }
+.nw-flow-B { animation: nw-flow-B 11s linear infinite -4s; }
+.nw-flow-C { animation: nw-flow-C 13s linear infinite -8s; }
+
+@keyframes nw-flow-A { from { stroke-dashoffset:  130; } to { stroke-dashoffset: -130; } }
+@keyframes nw-flow-B { from { stroke-dashoffset:  200; } to { stroke-dashoffset: -200; } }
+@keyframes nw-flow-C { from { stroke-dashoffset:  200; } to { stroke-dashoffset: -200; } }
+
+/* ── Ping rings: expanding circle emitted from hub nodes ── */
+.nw-ping-A,
+.nw-ping-B,
+.nw-ping-C {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.nw-ping-A { animation: nw-ping 6s ease-out infinite;       }
+.nw-ping-B { animation: nw-ping 6s ease-out infinite -2.5s; }
+.nw-ping-C { animation: nw-ping 6s ease-out infinite -4.8s; }
+
+@keyframes nw-ping {
+  0%   { transform: scale(1); opacity: 0.60; }
+  100% { transform: scale(7); opacity: 0;    }
 }
 
-/* Data-flow: a dashed packet that travels along the edge */
-.hero-flow-a {
-  animation: hn-flow-a 9s linear infinite;
-}
-.hero-flow-b {
-  animation: hn-flow-b 12s linear infinite -5s;
-}
-
-@keyframes hn-flow-a {
-  from { stroke-dashoffset:  166; }
-  to   { stroke-dashoffset: -166; }
-}
-
-@keyframes hn-flow-b {
-  from { stroke-dashoffset:  188; }
-  to   { stroke-dashoffset: -188; }
-}
-
-/* Ping rings: expand from node center, fade out */
-.hero-ping-a {
-  animation: hn-ping 5s ease-out infinite;
-}
-.hero-ping-b {
-  animation: hn-ping 5s ease-out infinite -2.5s;
-}
-
-@keyframes hn-ping {
-  0%   { transform: scale(1);   opacity: 0.65; }
-  100% { transform: scale(6);   opacity: 0;    }
-}
-
-/* Honour reduced-motion preference — collapse all network animations */
+/* ── Respect reduced-motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .hn, .hn-drift-1, .hn-drift-2,
-  .hero-flow-a, .hero-flow-b,
-  .hero-ping-a, .hero-ping-b {
-    animation: none;
-    opacity: 0.35;
-  }
+  .nw-core { animation: none; opacity: 0.35; }
+  .nw-glow { animation: none; opacity: 0; }
+  .nw-drift-A,.nw-drift-B,.nw-drift-C,.nw-drift-D,
+  .nw-drift-E,.nw-drift-F,.nw-drift-G,.nw-drift-H { animation: none; }
+  .nw-flow-A,.nw-flow-B,.nw-flow-C { animation: none; }
+  .nw-ping-A,.nw-ping-B,.nw-ping-C { animation: none; opacity: 0; }
 }
 
-/* ──────────────────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════ */
+
 
 @media (prefers-reduced-motion: no-preference) {
   @keyframes float {
@@ -204,11 +236,6 @@
     50% {
       opacity: 1;
     }
-  }
-
-  @keyframes shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
   }
 
   .animate-float {

@@ -9,84 +9,11 @@ export default function Hero({ onContact }: Props) {
   return (
     <section id="top" className="relative overflow-hidden pt-28 sm:pt-36">
 
-      {/* ── Background: grid + ambient glows + network SVG ── */}
+      {/* ── Hero section backdrop: grid + local glow (network canvas is in App.tsx fixed layer) ── */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
         <div className="absolute inset-0 bg-grid mask-radial opacity-80" />
         <div className="absolute left-1/2 top-[-14rem] h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[130px]" />
         <div className="absolute bottom-[-8rem] right-[-4rem] h-[24rem] w-[24rem] rounded-full bg-accent/[0.05] blur-[110px]" />
-
-        {/*
-          Network topology SVG.
-          Viewbox: 1200×640. Nodes concentrated in the right 55% (x > 550)
-          so they naturally sit behind the photo column and spill into negative
-          space at the edges — away from the left-side text.
-        */}
-        <svg
-          className="absolute inset-0 h-full w-full"
-          viewBox="0 0 1200 640"
-          preserveAspectRatio="xMidYMid slice"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            {/* Soft glow applied to nodes */}
-            <filter id="ng" x="-80%" y="-80%" width="260%" height="260%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="b" />
-              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
-            </filter>
-          </defs>
-
-          {/* ── Static connection edges ── */}
-          <line x1="635"  y1="92"  x2="822"  y2="150" stroke="rgba(59,159,255,0.10)" strokeWidth="1" />
-          <line x1="822"  y1="150" x2="1058" y2="112" stroke="rgba(59,159,255,0.08)" strokeWidth="1" />
-          <line x1="822"  y1="150" x2="708"  y2="288" stroke="rgba(59,159,255,0.09)" strokeWidth="1" />
-          <line x1="1058" y1="112" x2="938"  y2="270" stroke="rgba(59,159,255,0.07)" strokeWidth="1" />
-          <line x1="708"  y1="288" x2="938"  y2="270" stroke="rgba(59,159,255,0.10)" strokeWidth="1" />
-          <line x1="938"  y1="270" x2="1128" y2="348" stroke="rgba(59,159,255,0.06)" strokeWidth="1" />
-          <line x1="708"  y1="288" x2="788"  y2="458" stroke="rgba(59,159,255,0.09)" strokeWidth="1" />
-          <line x1="788"  y1="458" x2="1028" y2="528" stroke="rgba(59,159,255,0.07)" strokeWidth="1" />
-          <line x1="788"  y1="458" x2="658"  y2="582" stroke="rgba(59,159,255,0.06)" strokeWidth="1" />
-          <line x1="1028" y1="528" x2="858"  y2="618" stroke="rgba(59,159,255,0.05)" strokeWidth="1" />
-
-          {/* ── Animated data-flow pulses (dashed packet traveling the edge) ── */}
-          {/* Edge A: node-B → node-E  length ≈ 166px */}
-          <line
-            x1="822" y1="150" x2="938" y2="270"
-            stroke="rgba(59,159,255,0.50)" strokeWidth="1"
-            strokeDasharray="10 156"
-            className="hero-flow-a"
-          />
-          {/* Edge B: node-D → node-G  length ≈ 188px */}
-          <line
-            x1="708" y1="288" x2="788" y2="458"
-            stroke="rgba(59,159,255,0.42)" strokeWidth="1"
-            strokeDasharray="8 180"
-            className="hero-flow-b"
-          />
-
-          {/* ── Ping rings (expanding circles from two key nodes) ── */}
-          <g className="hero-ping-a" style={{ transformBox: 'fill-box', transformOrigin: 'center' }}>
-            <circle cx="822" cy="150" r="5" stroke="rgba(59,159,255,0.55)" strokeWidth="1" />
-          </g>
-          <g className="hero-ping-b" style={{ transformBox: 'fill-box', transformOrigin: 'center' }}>
-            <circle cx="938" cy="270" r="5" stroke="rgba(59,159,255,0.45)" strokeWidth="1" />
-          </g>
-
-          {/* ── Nodes — pulse-staggered via individual delay classes ── */}
-          <circle cx="635"  cy="92"  r="2.5" fill="rgba(59,159,255,0.55)" filter="url(#ng)" className="hn hn-a" />
-          <circle cx="822"  cy="150" r="3.5" fill="rgba(59,159,255,0.75)" filter="url(#ng)" className="hn hn-b" />
-          <circle cx="1058" cy="112" r="2"   fill="rgba(59,159,255,0.45)" filter="url(#ng)" className="hn hn-c" />
-          <circle cx="708"  cy="288" r="3"   fill="rgba(59,159,255,0.62)" filter="url(#ng)" className="hn hn-d hn-drift-1" />
-          <circle cx="938"  cy="270" r="3.5" fill="rgba(59,159,255,0.68)" filter="url(#ng)" className="hn hn-e" />
-          <circle cx="1128" cy="348" r="2"   fill="rgba(59,159,255,0.38)" filter="url(#ng)" className="hn hn-f" />
-          <circle cx="788"  cy="458" r="2.5" fill="rgba(59,159,255,0.52)" filter="url(#ng)" className="hn hn-g hn-drift-2" />
-          <circle cx="1028" cy="528" r="2"   fill="rgba(59,159,255,0.40)" filter="url(#ng)" className="hn hn-h" />
-          <circle cx="658"  cy="582" r="2"   fill="rgba(59,159,255,0.35)" filter="url(#ng)" className="hn hn-i" />
-          <circle cx="858"  cy="618" r="1.5" fill="rgba(59,159,255,0.28)" filter="url(#ng)" className="hn hn-j" />
-          {/* Faint leftward accent nodes — barely visible, add depth */}
-          <circle cx="482"  cy="208" r="1.5" fill="rgba(59,159,255,0.20)" filter="url(#ng)" className="hn hn-k" />
-          <circle cx="524"  cy="432" r="1.5" fill="rgba(59,159,255,0.16)" filter="url(#ng)" className="hn hn-l" />
-        </svg>
       </div>
 
       {/* ── Main content grid ── */}
