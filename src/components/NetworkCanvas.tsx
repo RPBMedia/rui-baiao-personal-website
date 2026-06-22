@@ -105,9 +105,9 @@ export default function NetworkCanvas() {
       }
 
       // 2. Draw edges between nearby nodes.
-      //    Opacity scales with proximity² → connections gently appear/dissolve
-      //    as nodes drift toward and away from each other.
-      const MAX_D = Math.min(W * 0.20, H * 0.26, 240)
+      //    Linear opacity falloff: visible at 16% near the threshold, fading to 0
+      //    at MAX_D. Previous p² formula gave <3% at typical distances — invisible.
+      const MAX_D = Math.max(160, Math.min(W * 0.26, H * 0.35, 320))
       const MAX_D2 = MAX_D * MAX_D
 
       for (let i = 0; i < NODES.length; i++) {
@@ -120,21 +120,24 @@ export default function NetworkCanvas() {
           ctx.beginPath()
           ctx.moveTo(NODES[i].x, NODES[i].y)
           ctx.lineTo(NODES[j].x, NODES[j].y)
-          ctx.strokeStyle = rgba(p * p * 0.13)
-          ctx.lineWidth = 0.75
+          ctx.strokeStyle = rgba(p * 0.18)
+          ctx.lineWidth = 0.8
           ctx.stroke()
         }
       }
 
-      // 3. Draw each node: soft radial glow halo + bright core dot.
-      //    Glow amplitude breathes independently per node via its own sine timer.
+      // 3. Draw each node: soft radial glow halo + core dot that grows/shrinks.
+      //    Both opacity and radius are driven by the same sine pulse so the node
+      //    visibly breathes — brightening as it expands, dimming as it contracts.
       for (const n of NODES) {
-        const g = n.gBase + n.gAmp * (0.5 + 0.5 * Math.sin(t * n.gFreq + n.gPhase))
+        const pulse = 0.5 + 0.5 * Math.sin(t * n.gFreq + n.gPhase)
+        const g = n.gBase + n.gAmp * pulse
+        const r = n.r * (0.65 + 0.70 * pulse)   // radius cycles ±35% of base
 
-        const gr = n.r * 7
+        const gr = r * 7
         const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, gr)
-        grad.addColorStop(0,   rgba(g * 0.32))
-        grad.addColorStop(0.4, rgba(g * 0.10))
+        grad.addColorStop(0,   rgba(g * 0.35))
+        grad.addColorStop(0.4, rgba(g * 0.12))
         grad.addColorStop(1,   rgba(0))
         ctx.beginPath()
         ctx.arc(n.x, n.y, gr, 0, 6.2832)
@@ -142,7 +145,7 @@ export default function NetworkCanvas() {
         ctx.fill()
 
         ctx.beginPath()
-        ctx.arc(n.x, n.y, n.r, 0, 6.2832)
+        ctx.arc(n.x, n.y, r, 0, 6.2832)
         ctx.fillStyle = rgba(g)
         ctx.fill()
       }
