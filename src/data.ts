@@ -165,10 +165,8 @@ export const skillGroups: SkillGroup[] = [
       'Lovable',
       'Agentic workflows',
       'AI-assisted automation',
-      'AI-assisted documentation',
       'AI-assisted prototyping',
-      'Codebase exploration',
-      'Test generation',
+      'n8n',
     ],
   },
   {
@@ -197,6 +195,8 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       'Music production',
       'Sound design',
+      'Ableton Live',
+      'Adobe Suite',
       'Film-making',
       'Photography editing',
       'Travel photography',
