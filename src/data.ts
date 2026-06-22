@@ -1,7 +1,7 @@
 // Central content for the site. Keeping copy here keeps the components clean.
 
 export const profile = {
-  name: 'Rui Baiao',
+  name: 'Rui Martins Baiao',
   role: 'Engineering Manager',
   location: 'Stockholm, Sweden',
   email: 'rui.palma.baiao@gmail.com',

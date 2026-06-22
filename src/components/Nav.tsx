@@ -26,11 +26,11 @@ export default function Nav({ onContact }: Props) {
       ].join(' ')}
     >
       <nav className="container-x flex h-16 items-center justify-between">
-        <a href="#top" className="group flex items-center gap-2.5" aria-label="Rui Baiao — home">
+        <a href="#top" className="group flex items-center gap-2.5" aria-label="Rui Martins Baiao — home">
           <span className="grid h-8 w-8 place-items-center rounded-lg border border-accent/20 bg-accent/[0.05] font-mono text-sm font-medium text-paper transition-colors group-hover:border-accent/50 group-hover:bg-accent/10">
             RB
           </span>
-          <span className="text-sm font-medium tracking-tight text-paper">Rui Baiao</span>
+          <span className="text-sm font-medium tracking-tight text-paper">Rui Martins Baiao</span>
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">
