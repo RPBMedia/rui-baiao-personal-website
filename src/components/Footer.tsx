@@ -15,8 +15,7 @@ export default function Footer() {
               <span className="text-sm font-medium text-paper">{profile.name}</span>
             </a>
             <p className="mt-3 max-w-xs text-sm text-muted">
-              {profile.role} · {profile.location}. Building scalable platforms, strong teams, and
-              AI-enabled delivery.
+              {profile.role} · {profile.location}.
             </p>
           </div>
 
