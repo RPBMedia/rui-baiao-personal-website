@@ -18,10 +18,26 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Load web fonts WITHOUT blocking render. A normal <link rel="stylesheet">
+      to Google Fonts is render-blocking: on a slow mobile connection it can
+      leave the page blank (just the dark background) for many seconds until the
+      font CSS downloads. Instead we preload it and promote it to a stylesheet
+      on load, so the page paints instantly with the system fallback
+      (SF Pro / Segoe UI / system-ui) and swaps in Inter when it arrives.
+    -->
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <title>Rui Baiao — Engineering Manager</title>
   </head>
