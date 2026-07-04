@@ -113,6 +113,10 @@ export default function Hero({ onContact }: Props) {
                 <img
                   src="/RuiBaiaoAvatar.jpg"
                   alt="Rui Baiao"
+                  width={480}
+                  height={480}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover object-center"
                   onError={(e) => {
                     const t = e.currentTarget
