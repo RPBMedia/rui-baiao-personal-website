@@ -9,12 +9,18 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Stable dark base so the document is never black/blank, including the mobile
+       overscroll/rubber-band area behind the fixed background layer. */
+    background-color: #060D1C;
   }
 
   body {
     @apply antialiased;
-    background: linear-gradient(165deg, #0B1E3D 0%, #060D1C 35%, #060D1C 100%);
-    background-attachment: fixed;
+    /* Solid dark base only. The navy gradient + network animation live in a
+       fixed z-0 layer in App.tsx. We deliberately avoid `background-attachment:
+       fixed`, which is buggy on iOS/Android and, combined with a negative-z
+       fixed layer, caused content to vanish behind the animation on scroll. */
+    background-color: #060D1C;
     color: theme('colors.paper');
   }
 

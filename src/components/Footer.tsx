@@ -4,7 +4,7 @@ export default function Footer() {
   const year = 2026
 
   return (
-    <footer className="border-t border-white/10 py-12">
+    <footer className="relative z-10 border-t border-white/10 py-12">
       <div className="container-x">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>

@@ -18,10 +18,21 @@ export default function App() {
   const openContact = () => setContactOpen(true)
 
   return (
-    <div className="min-h-screen text-paper">
+    <div className="relative min-h-screen text-paper">
 
-      {/* ── Fixed full-page backdrop: ambient glows + network canvas ── */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
+      {/*
+        Fixed full-page backdrop: the continuous dark gradient + ambient glows +
+        network canvas. This is a `fixed z-0` layer (NOT negative z-index): it
+        stays behind the content but above nothing, so the mobile compositor
+        cannot promote it in front of the page on address-bar resize. It also
+        supplies the navy gradient directly (viewport-fixed) instead of relying
+        on the mobile-buggy `background-attachment: fixed`.
+      */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+        style={{ background: 'linear-gradient(165deg, #0B1E3D 0%, #060D1C 35%, #060D1C 100%)' }}
+        aria-hidden
+      >
         {/* Large soft radial glow blobs */}
         <div className="absolute -top-40 left-1/2 h-[40rem] w-[60rem] -translate-x-1/2 rounded-full bg-accent/[0.07] blur-[140px]" />
         <div className="absolute top-[55vh] right-[-12rem] h-[32rem] w-[32rem] rounded-full bg-accent/[0.04] blur-[110px]" />
@@ -31,7 +42,8 @@ export default function App() {
       </div>
 
       <Nav onContact={openContact} />
-      <main>
+      {/* Content sits above the animation layer (z-10 < header z-50). */}
+      <main className="relative z-10">
         <Hero onContact={openContact} />
         <About />
         <LeadershipPhilosophy />
