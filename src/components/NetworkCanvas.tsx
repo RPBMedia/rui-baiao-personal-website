@@ -80,9 +80,17 @@ export default function NetworkCanvas() {
 
     let rafId = 0
     let t0 = 0
+    let lastFrame = 0
+
+    // Phones get a lighter treatment: lower backing-store resolution and a
+    // ~30fps cap. The animation is ambient — nobody perceives the difference,
+    // but the GPU/battery cost roughly quarters.
+    const isMobile = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches
+    const maxDpr = isMobile ? 1.5 : 2
+    const minFrameMs = isMobile ? 33 : 0
 
     const setup = () => {
-      const dpr = Math.min(window.devicePixelRatio ?? 1, 2)
+      const dpr = Math.min(window.devicePixelRatio ?? 1, maxDpr)
       canvas.width  = canvas.offsetWidth  * dpr
       canvas.height = canvas.offsetHeight * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
@@ -90,6 +98,11 @@ export default function NetworkCanvas() {
 
     const draw = (now: number) => {
       if (!t0) t0 = now
+      if (minFrameMs && now - lastFrame < minFrameMs) {
+        rafId = requestAnimationFrame(draw)
+        return
+      }
+      lastFrame = now
       const t = (now - t0) / 1000
 
       const W = canvas.offsetWidth

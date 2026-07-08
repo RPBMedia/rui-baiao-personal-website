@@ -61,6 +61,20 @@ export function Card({
   )
 }
 
+// Soft glow rendered as a plain radial gradient. Visually equivalent to the
+// old `bg-accent/x blur-[Npx]` blobs, but free to raster: giant gaussian blur
+// filters forced mobile GPUs through multi-second first paints.
+export function Glow({ className, alpha }: { className: string; alpha: number }) {
+  return (
+    <div
+      className={`absolute rounded-full ${className}`}
+      style={{
+        background: `radial-gradient(closest-side, rgba(59,159,255,${alpha}), rgba(59,159,255,0) 72%)`,
+      }}
+    />
+  )
+}
+
 export function Chip({ children }: { children: ReactNode }) {
   return (
     <span className="inline-flex items-center rounded-full border border-accent/15 bg-accent/[0.04] px-3 py-1.5 text-sm text-silver transition-colors hover:border-accent/35 hover:text-paper">

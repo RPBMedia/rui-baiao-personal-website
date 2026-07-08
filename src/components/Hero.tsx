@@ -1,5 +1,6 @@
 import { links, profile, stats } from '../data'
 import { Download, GitHub, LinkedIn, Mail, MapPin, Spotify } from './icons'
+import { Glow } from './ui'
 
 interface Props {
   onContact: () => void
@@ -12,8 +13,8 @@ export default function Hero({ onContact }: Props) {
       {/* ── Hero section backdrop: grid + local glow (network canvas is in App.tsx fixed layer) ── */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
         <div className="absolute inset-0 bg-grid mask-radial opacity-80" />
-        <div className="absolute left-1/2 top-[-14rem] h-[40rem] w-[40rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[130px]" />
-        <div className="absolute bottom-[-8rem] right-[-4rem] h-[24rem] w-[24rem] rounded-full bg-accent/[0.05] blur-[110px]" />
+        <Glow className="left-1/2 top-[-14rem] h-[40rem] w-[40rem] -translate-x-1/2" alpha={0.12} />
+        <Glow className="bottom-[-8rem] right-[-4rem] h-[24rem] w-[24rem]" alpha={0.06} />
       </div>
 
       {/* ── Main content grid ── */}
@@ -96,14 +97,16 @@ export default function Hero({ onContact }: Props) {
           </p>
         </div>
 
-        {/* Right: photo — clean, static, no orbits */}
-        <div className="relative mx-auto hidden w-full max-w-xs items-center justify-center lg:flex" aria-hidden>
+        {/* Right: photo — clean, static, no orbits. Shown on all breakpoints so
+            mobile visitors see the profile immediately; eager + high priority
+            because it is above the fold. */}
+        <div className="relative mx-auto flex w-full max-w-xs items-center justify-center" aria-hidden>
           <div className="relative">
-            {/* Ambient soft glow behind the photo */}
-            <div className="absolute inset-0 -m-10 rounded-full bg-accent/[0.07] blur-3xl" />
+            {/* Ambient soft glow behind the photo (gradient, no blur filter) */}
+            <Glow className="inset-0 -m-10" alpha={0.09} />
             {/* Single thin gradient border ring */}
             <div
-              className="relative h-56 w-56 rounded-full p-[1.5px]"
+              className="relative h-40 w-40 rounded-full p-[1.5px] sm:h-48 sm:w-48 lg:h-56 lg:w-56"
               style={{
                 background:
                   'linear-gradient(145deg, rgba(59,159,255,0.30) 0%, rgba(59,159,255,0.04) 70%, transparent 100%)',
@@ -115,7 +118,8 @@ export default function Hero({ onContact }: Props) {
                   alt="Rui Baiao"
                   width={480}
                   height={480}
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
                   decoding="async"
                   className="h-full w-full object-cover object-center"
                   onError={(e) => {

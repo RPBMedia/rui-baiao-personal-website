@@ -38,19 +38,23 @@
     @apply mx-auto w-full max-w-6xl px-6;
   }
 
+  /* No backdrop-filter here: blurring the animated canvas behind every card
+     forced continuous GPU re-blurs on mobile. A slightly more opaque surface
+     reads the same at a fraction of the cost. */
   .glass {
-    @apply border border-accent/10 bg-surface/50 backdrop-blur-sm;
+    @apply border border-accent/10 bg-surface/70;
   }
 
-  /* 3D card */
+  /* 3D card. The gradient is nearly opaque, so the old `backdrop-filter:
+     blur(8px)` was visually invisible while costing a full backdrop re-blur
+     per card per frame over the animated background. Removed. */
   .card-3d {
-    background: linear-gradient(145deg, rgba(15, 40, 80, 0.85) 0%, rgba(6, 13, 28, 0.92) 100%);
+    background: linear-gradient(145deg, rgba(15, 40, 80, 0.88) 0%, rgba(6, 13, 28, 0.94) 100%);
     border: 1px solid rgba(59, 159, 255, 0.14);
     box-shadow:
       0 4px 32px rgba(0, 60, 180, 0.14),
       0 1px 8px rgba(0, 0, 0, 0.7),
       inset 0 1px 0 rgba(120, 180, 255, 0.07);
-    backdrop-filter: blur(8px);
   }
 
   .card-3d-interactive {

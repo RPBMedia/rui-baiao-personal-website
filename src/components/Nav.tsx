@@ -21,7 +21,7 @@ export default function Nav({ onContact }: Props) {
       className={[
         'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
         scrolled
-          ? 'border-b border-accent/10 bg-ink/85 backdrop-blur-md'
+          ? 'border-b border-accent/10 bg-ink/95'
           : 'border-b border-transparent',
       ].join(' ')}
     >
@@ -77,7 +77,7 @@ export default function Nav({ onContact }: Props) {
       </nav>
 
       {open && (
-        <div className="border-t border-accent/10 bg-ink/95 backdrop-blur-md lg:hidden">
+        <div className="border-t border-accent/10 bg-ink/95 lg:hidden">
           <ul className="container-x grid gap-1 py-4">
             {navItems.map((item) => (
               <li key={item.id}>

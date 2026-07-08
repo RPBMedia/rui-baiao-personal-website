@@ -79,7 +79,7 @@ export default function ContactModal({ open, onClose }: Props) {
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-ink/85 backdrop-blur-md"
+        className="absolute inset-0 bg-ink/90"
         onClick={handleClose}
         aria-hidden
       />

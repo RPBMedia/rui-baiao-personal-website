@@ -1,6 +1,6 @@
 import { links, profile } from '../data'
 import { ArrowUpRight, GitHub, LinkedIn, Mail, MapPin, Spotify } from './icons'
-import { Eyebrow, Section } from './ui'
+import { Eyebrow, Glow, Section } from './ui'
 
 interface Props {
   onContact: () => void
@@ -16,10 +16,10 @@ export default function Contact({ onContact }: Props) {
   return (
     <Section id="contact" className="border-t border-accent/10">
       <div className="relative overflow-hidden rounded-3xl border border-accent/12 p-8 sm:p-12" style={{ background: 'linear-gradient(145deg, rgba(15,40,80,0.7) 0%, rgba(6,13,28,0.85) 100%)' }}>
-        {/* Blue ambient glow */}
+        {/* Blue ambient glow (gradients, no blur filters) */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute right-[-4rem] top-[-4rem] h-64 w-64 rounded-full bg-accent/12 blur-[100px]" />
-          <div className="absolute bottom-[-4rem] left-[-4rem] h-48 w-48 rounded-full bg-accent/[0.07] blur-[80px]" />
+          <Glow className="right-[-4rem] top-[-4rem] h-64 w-64" alpha={0.14} />
+          <Glow className="bottom-[-4rem] left-[-4rem] h-48 w-48" alpha={0.09} />
         </div>
 
         <Eyebrow>Contact</Eyebrow>
