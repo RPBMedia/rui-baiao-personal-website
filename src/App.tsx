@@ -8,6 +8,7 @@ import ExperienceHighlights from './components/ExperienceHighlights'
 import Skills from './components/Skills'
 import CareerTimeline from './components/CareerTimeline'
 import CreativeSide from './components/CreativeSide'
+import Portfolio from './components/Portfolio'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ContactModal from './components/ContactModal'
@@ -98,6 +99,7 @@ export default function App() {
         <Skills />
         <CareerTimeline />
         <CreativeSide />
+        <Portfolio />
         <Contact onContact={openContact} />
       </main>
       <Footer />

@@ -313,6 +313,54 @@ export const creativeTags = [
   'Gaming',
 ]
 
+export interface Project {
+  name: string
+  tag: string
+  /** Live URL, or null when not yet public. */
+  url: string | null
+  image: string
+  description: string
+  /** Optional badge, e.g. "Coming soon" for unreleased work. */
+  status?: string
+}
+
+// Side projects I design and ship — thumbnails live in /public/projects.
+export const projects: Project[] = [
+  {
+    name: 'Quizgard',
+    tag: 'Game',
+    url: 'https://quizgard.lovable.app/',
+    image: '/projects/quizgard.jpg',
+    description:
+      'A fast-paced quiz game built around Viking history and Norse mythology — answer quickly to score the most points.',
+  },
+  {
+    name: 'MarketMage',
+    tag: 'Fintech',
+    url: 'https://marketmage.lovable.app/',
+    image: '/projects/marketmage.jpg',
+    description:
+      'A stock-tracking app that brings practical financial data and market analysis into one clean, focused dashboard.',
+  },
+  {
+    name: 'The Iron Codex',
+    tag: 'History',
+    url: 'https://www.theironcodex.org/',
+    image: '/projects/ironcodex.jpg',
+    description:
+      'A wiki-style archive of the European Middle Ages — kingdoms, battles, rulers, and relics from 476 to 1453.',
+  },
+  {
+    name: 'StoryMaker',
+    tag: 'Media',
+    url: null,
+    status: 'Coming soon',
+    image: '/projects/storymaker.jpg',
+    description:
+      'A video-generation app that assembles customized videos from your own audio and media, with transitions and effects.',
+  },
+]
+
 export const navItems = [
   { id: 'about', label: 'About' },
   { id: 'leadership', label: 'Leadership' },
@@ -321,5 +369,6 @@ export const navItems = [
   { id: 'skills', label: 'Skills' },
   { id: 'timeline', label: 'Timeline' },
   { id: 'creative', label: 'Creative' },
+  { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
 ]
