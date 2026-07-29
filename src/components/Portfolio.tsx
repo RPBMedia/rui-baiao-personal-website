@@ -62,10 +62,7 @@ export default function Portfolio() {
     <Section id="projects" className="border-t border-white/10">
       <Eyebrow>Projects</Eyebrow>
       <SectionHeading>Portfolio</SectionHeading>
-      <Lead>
-        A few side projects I've been designing and shipping — small products where I stay
-        hands-on with product, engineering, and AI-assisted building.
-      </Lead>
+      <Lead>Side projects I've been designing and shipping.</Lead>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2">
         {projects.map((project): ReactNode =>
