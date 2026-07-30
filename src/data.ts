@@ -327,6 +327,14 @@ export interface Project {
 // Side projects I design and ship — thumbnails live in /public/projects.
 export const projects: Project[] = [
   {
+    name: 'Dinoria',
+    tag: 'Game',
+    url: 'https://dinoria.vercel.app/',
+    image: '/projects/dinoria.jpg',
+    description:
+      'A prehistoric quiz adventure — name 58 dinosaurs from original artwork, race the clock for streak bonuses, and collect them all across five difficulty tiers.',
+  },
+  {
     name: 'Quizgard',
     tag: 'Game',
     url: 'https://quizgard.lovable.app/',
