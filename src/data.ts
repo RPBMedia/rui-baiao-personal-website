@@ -329,7 +329,7 @@ export const projects: Project[] = [
   {
     name: 'Dinoria',
     tag: 'Game',
-    url: 'https://dinoria.vercel.app/',
+    url: 'https://dinoria.app/',
     image: '/projects/dinoria.jpg',
     description:
       'A prehistoric quiz adventure — name 58 dinosaurs from original artwork, race the clock for streak bonuses, and collect them all across five difficulty tiers.',
