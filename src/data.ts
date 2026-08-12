@@ -329,7 +329,7 @@ export const projects: Project[] = [
   {
     name: 'StoryMaker',
     tag: 'Media',
-    url: 'https://story-maker-main.vercel.app',
+    url: 'https://story-maker.app',
     image: '/projects/storymaker.jpg',
     description:
       'A video-generation app that assembles customized videos from your own audio and media, with transitions and effects.',
