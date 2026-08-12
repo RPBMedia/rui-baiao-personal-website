@@ -327,6 +327,22 @@ export interface Project {
 // Side projects I design and ship — thumbnails live in /public/projects.
 export const projects: Project[] = [
   {
+    name: 'StoryMaker',
+    tag: 'Media',
+    url: 'https://story-maker-main.vercel.app',
+    image: '/projects/storymaker.jpg',
+    description:
+      'A video-generation app that assembles customized videos from your own audio and media, with transitions and effects.',
+  },
+  {
+    name: 'MarketMage',
+    tag: 'Fintech',
+    url: 'https://marketmage.lovable.app/',
+    image: '/projects/marketmage.jpg',
+    description:
+      'A stock-tracking app that brings practical financial data and market analysis into one clean, focused dashboard.',
+  },
+  {
     name: 'Dinoria',
     tag: 'Game',
     url: 'https://dinoria.app/',
@@ -343,14 +359,6 @@ export const projects: Project[] = [
       'A fast-paced quiz game built around Viking history and Norse mythology — answer quickly to score the most points.',
   },
   {
-    name: 'MarketMage',
-    tag: 'Fintech',
-    url: 'https://marketmage.lovable.app/',
-    image: '/projects/marketmage.jpg',
-    description:
-      'A stock-tracking app that brings practical financial data and market analysis into one clean, focused dashboard.',
-  },
-  {
     name: 'The Iron Codex',
     tag: 'History',
     url: 'https://www.theironcodex.org/',
@@ -359,13 +367,13 @@ export const projects: Project[] = [
       'A wiki-style archive of the European Middle Ages — kingdoms, battles, rulers, and relics from 476 to 1453.',
   },
   {
-    name: 'StoryMaker',
-    tag: 'Media',
+    name: 'MealHack',
+    tag: 'Food',
     url: null,
     status: 'Coming soon',
-    image: '/projects/storymaker.jpg',
+    image: '/projects/mealhack.jpg',
     description:
-      'A video-generation app that assembles customized videos from your own audio and media, with transitions and effects.',
+      'A meal-planning app that turns your goals and what’s in your kitchen into a week of recipes and a ready-to-shop grocery list.',
   },
 ]
 
