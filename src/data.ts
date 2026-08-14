@@ -21,7 +21,7 @@ export const stats = [
   { value: '15+', label: 'years in engineering & leadership' },
   { value: '~100k', label: 'users on platforms I help run' },
   { value: '100+', label: 'countries served' },
-  { value: '3', label: 'cross-functional teams led' },
+  { value: '5', label: 'cross-functional teams led' },
 ]
 
 export const leadershipPrinciples = [

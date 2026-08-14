@@ -30,7 +30,7 @@ export default function About() {
             actually land.
           </p>
           <p className="text-paper">
-            Known for fairness, transparency, and a sense of humor that keeps teams grounded when the
+            I lead with fairness, transparency, and a sense of humor that keeps teams grounded when the
             road gets rough.
           </p>
         </div>
