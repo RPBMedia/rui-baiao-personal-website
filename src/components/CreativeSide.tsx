@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { creativeTags } from '../data'
 import { ChevronDown, SoundCloud, Spotify, Waveform } from './icons'
 import { Eyebrow, Section, SectionHeading } from './ui'
@@ -10,7 +10,22 @@ const bars = [
 const SOUNDCLOUD = 'https://soundcloud.com/eon-rift'
 const SPOTIFY = 'https://open.spotify.com/artist/6lNAaGeL0T2a4zF750AH95?si=ZfgQade-SA-4d1wIutXpXw'
 
-export default function CreativeSide() {
+/**
+ * A trigger that opens the "listen on SoundCloud / Spotify" menu. Reused by the
+ * text link and the Eon Rift card so both open the same picker. The trigger
+ * content is a render prop so it can react to `open` (e.g. rotate a chevron).
+ */
+function ListenPopover({
+  triggerClassName,
+  menuClassName = 'left-0 top-full mt-2.5',
+  ariaLabel = 'Listen to Eon Rift',
+  children,
+}: {
+  triggerClassName: string
+  menuClassName?: string
+  ariaLabel?: string
+  children: (open: boolean) => ReactNode
+}) {
   const [open, setOpen] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -21,9 +36,15 @@ export default function CreativeSide() {
       if (
         !menuRef.current?.contains(e.target as Node) &&
         !triggerRef.current?.contains(e.target as Node)
-      ) setOpen(false)
+      )
+        setOpen(false)
     }
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') { setOpen(false); triggerRef.current?.focus() } }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
+    }
     document.addEventListener('pointerdown', onPointer)
     document.addEventListener('keydown', onKey)
     return () => {
@@ -32,6 +53,56 @@ export default function CreativeSide() {
     }
   }, [open])
 
+  return (
+    <div className="relative">
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="menu"
+        aria-label={ariaLabel}
+        onClick={() => setOpen(v => !v)}
+        className={triggerClassName}
+      >
+        {children(open)}
+      </button>
+
+      {open && (
+        <div
+          ref={menuRef}
+          role="menu"
+          aria-label="Listen on"
+          className={`absolute z-50 min-w-[164px] rounded-xl border border-accent/20 bg-surface/95 py-1.5 shadow-[0_8px_40px_rgba(0,30,100,0.50)] backdrop-blur-md ${menuClassName}`}
+        >
+          <a
+            href={SOUNDCLOUD}
+            target="_blank"
+            rel="noreferrer"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted transition-colors hover:bg-accent/10 hover:text-paper"
+          >
+            <SoundCloud width={15} height={15} className="shrink-0 text-accent" />
+            SoundCloud
+          </a>
+          <a
+            href={SPOTIFY}
+            target="_blank"
+            rel="noreferrer"
+            role="menuitem"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted transition-colors hover:bg-accent/10 hover:text-paper"
+          >
+            <Spotify width={15} height={15} className="shrink-0 text-accent" />
+            Spotify
+          </a>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default function CreativeSide() {
   return (
     <Section id="creative" className="border-t border-white/10">
       <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
@@ -59,84 +130,60 @@ export default function CreativeSide() {
             ))}
           </div>
 
-          {/* Listen button with platform picker */}
-          <div className="relative mt-7 inline-block">
-            <button
-              ref={triggerRef}
-              type="button"
-              aria-expanded={open}
-              aria-haspopup="menu"
-              aria-controls="eon-rift-menu"
-              onClick={() => setOpen(v => !v)}
-              className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-soft"
-            >
-              <Waveform width={17} height={17} />
-              Listen to Eon Rift
-              <ChevronDown
-                width={13}
-                height={13}
-                className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-              />
-            </button>
+          {/* Listen link with platform picker */}
+          <div className="mt-7 inline-block">
+            <ListenPopover triggerClassName="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-soft">
+              {(open) => (
+                <>
+                  <Waveform width={17} height={17} />
+                  Listen to Eon Rift
+                  <ChevronDown
+                    width={13}
+                    height={13}
+                    className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+                  />
+                </>
+              )}
+            </ListenPopover>
+          </div>
+        </div>
 
-            {open && (
-              <div
-                id="eon-rift-menu"
-                ref={menuRef}
-                role="menu"
-                aria-label="Listen on"
-                className="absolute left-0 top-full z-50 mt-2.5 min-w-[164px] rounded-xl border border-accent/20 bg-surface/95 py-1.5 shadow-[0_8px_40px_rgba(0,30,100,0.50)] backdrop-blur-md"
-              >
-                <a
-                  href={SOUNDCLOUD}
-                  target="_blank"
-                  rel="noreferrer"
-                  role="menuitem"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted transition-colors hover:bg-accent/10 hover:text-paper"
-                >
-                  <SoundCloud width={15} height={15} className="shrink-0 text-accent" />
-                  SoundCloud
-                </a>
-                <a
-                  href={SPOTIFY}
-                  target="_blank"
-                  rel="noreferrer"
-                  role="menuitem"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-muted transition-colors hover:bg-accent/10 hover:text-paper"
-                >
-                  <Spotify width={15} height={15} className="shrink-0 text-accent" />
-                  Spotify
-                </a>
+        {/* The whole Eon Rift card opens the same picker. */}
+        <ListenPopover
+          menuClassName="left-1/2 -translate-x-1/2 top-full mt-2.5"
+          triggerClassName="group block w-full cursor-pointer rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-8 text-left transition-colors hover:border-accent/40"
+        >
+          {() => (
+            <>
+              <div className="flex items-center justify-between text-muted">
+                <div className="flex items-center gap-2">
+                  <Waveform width={18} height={18} className="text-accent" />
+                  <span className="font-mono text-xs uppercase tracking-[0.2em]">Eon Rift</span>
+                </div>
+                <span className="text-xs font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                  Listen ▸
+                </span>
               </div>
-            )}
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-8">
-          <div className="flex items-center gap-2 text-muted">
-            <Waveform width={18} height={18} className="text-accent" />
-            <span className="font-mono text-xs uppercase tracking-[0.2em]">Eon Rift</span>
-          </div>
-          <div
-            className="mt-6 flex h-40 items-center gap-[3px] sm:gap-1.5"
-            role="img"
-            aria-label="Stylized audio waveform"
-          >
-            {bars.map((h, i) => (
-              <span
-                key={i}
-                className="flex-1 rounded-full bg-gradient-to-t from-accent/30 to-accent/80"
-                style={{ height: `${h}%` }}
-              />
-            ))}
-          </div>
-          <p className="mt-6 text-sm leading-relaxed text-muted">
-            Cinematic electronic textures — built the same way I like to build software: clean
-            structure underneath, room to breathe on top.
-          </p>
-        </div>
+              <div
+                className="mt-6 flex h-40 items-center gap-[3px] sm:gap-1.5"
+                role="img"
+                aria-label="Stylized audio waveform"
+              >
+                {bars.map((h, i) => (
+                  <span
+                    key={i}
+                    className="flex-1 rounded-full bg-gradient-to-t from-accent/30 to-accent/80"
+                    style={{ height: `${h}%` }}
+                  />
+                ))}
+              </div>
+              <p className="mt-6 text-sm leading-relaxed text-muted">
+                Cinematic electronic textures — built the same way I like to build software: clean
+                structure underneath, room to breathe on top.
+              </p>
+            </>
+          )}
+        </ListenPopover>
       </div>
     </Section>
   )
