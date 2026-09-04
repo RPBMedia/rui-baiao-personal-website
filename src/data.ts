@@ -322,10 +322,24 @@ export interface Project {
   description: string
   /** Optional badge, e.g. "Coming soon" for unreleased work. */
   status?: string
+  /** Lead project — rendered full-width above the grid instead of as a peer card. */
+  featured?: boolean
+  /** Short capability chips, shown only on the featured card. */
+  highlights?: string[]
 }
 
 // Side projects I design and ship — thumbnails live in /public/projects.
 export const projects: Project[] = [
+  {
+    name: 'CareerForger',
+    tag: 'Career',
+    url: 'https://www.careerforger.app',
+    image: '/projects/careerforger.jpg',
+    featured: true,
+    description:
+      'A job-search platform I am building end to end. Track every application through its pipeline, keep one reusable career profile, and turn it into tailored CVs and cover letters. Live, with a free tier and Pro subscriptions.',
+    highlights: ['Pipeline & interview tracking', 'AI cover letters', 'CV builder', 'Search analytics'],
+  },
   {
     name: 'StoryMaker',
     tag: 'Media',

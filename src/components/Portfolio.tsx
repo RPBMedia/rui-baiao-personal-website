@@ -54,9 +54,71 @@ function CardBody({ project }: { project: Project }) {
   )
 }
 
+/** The lead project: full width, image beside the copy, and room for a short
+ *  capability list. Same visual language as the grid cards, one step up. */
+function FeaturedCard({ project }: { project: Project }) {
+  const host = project.url?.replace(/^https?:\/\//, '').replace(/\/$/, '')
+
+  return (
+    <>
+      <div className="relative aspect-[960/567] overflow-hidden border-b border-white/10 bg-ink-soft lg:aspect-auto lg:w-[56%] lg:border-b-0 lg:border-r">
+        <img
+          src={project.image}
+          alt={`${project.name} screenshot`}
+          width={960}
+          height={567}
+          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col p-6 lg:p-8">
+        <div className="flex items-center gap-2.5">
+          <span className="rounded-full border border-accent/40 bg-accent/15 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent-soft">
+            Featured
+          </span>
+          <span className="rounded-full border border-white/15 bg-white/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-silver">
+            {project.tag}
+          </span>
+          {project.url && (
+            <ArrowUpRight
+              width={18}
+              height={18}
+              className="ml-auto shrink-0 text-muted transition-colors group-hover:text-accent"
+            />
+          )}
+        </div>
+
+        <h3 className="mt-3 text-2xl font-semibold text-paper">{project.name}</h3>
+        <p className="mt-2.5 text-sm leading-relaxed text-muted">{project.description}</p>
+
+        {project.highlights && (
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {project.highlights.map((h) => (
+              <li
+                key={h}
+                className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-xs text-silver"
+              >
+                {h}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {host && (
+          <span className="mt-auto pt-5 truncate font-mono text-xs text-muted/80 transition-colors group-hover:text-accent-soft">
+            {host}
+          </span>
+        )}
+      </div>
+    </>
+  )
+}
+
 export default function Portfolio() {
   const cardBase =
     'group relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025]'
+  const featured = projects.filter((p) => p.featured)
+  const rest = projects.filter((p) => !p.featured)
 
   return (
     <Section id="projects" className="border-t border-white/10">
@@ -64,8 +126,30 @@ export default function Portfolio() {
       <SectionHeading>Portfolio</SectionHeading>
       <Lead>Side projects I've been designing and shipping.</Lead>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2">
-        {projects.map((project): ReactNode =>
+      {featured.map((project): ReactNode =>
+        project.url ? (
+          <a
+            key={project.name}
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${project.name} — open live site in a new tab`}
+            className="group relative mt-12 flex flex-col overflow-hidden rounded-2xl border border-accent/25 bg-white/[0.035] transition-colors hover:border-accent/50 hover:bg-white/[0.055] lg:flex-row"
+          >
+            <FeaturedCard project={project} />
+          </a>
+        ) : (
+          <div
+            key={project.name}
+            className="group relative mt-12 flex flex-col overflow-hidden rounded-2xl border border-accent/25 bg-white/[0.035] lg:flex-row"
+          >
+            <FeaturedCard project={project} />
+          </div>
+        ),
+      )}
+
+      <div className={`${featured.length ? 'mt-6' : 'mt-12'} grid gap-6 sm:grid-cols-2`}>
+        {rest.map((project): ReactNode =>
           project.url ? (
             <a
               key={project.name}
