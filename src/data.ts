@@ -337,7 +337,7 @@ export const projects: Project[] = [
     image: '/projects/careerforger.jpg',
     featured: true,
     description:
-      'A job-search platform I am building end to end. Track every application through its pipeline, keep one reusable career profile, and turn it into tailored CVs and cover letters. Live, with a free tier and Pro subscriptions.',
+      'A job-search platform & CV builder with AI-assisted workflows. Track every application through its pipeline, keep one reusable career profile, and turn it into tailored CVs and cover letters. Live, with a free tier and Pro subscriptions.',
     highlights: ['Pipeline & interview tracking', 'AI cover letters', 'CV builder', 'Search analytics'],
   },
   {
