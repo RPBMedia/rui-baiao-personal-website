@@ -337,8 +337,8 @@ export const projects: Project[] = [
     image: '/projects/careerforger.jpg',
     featured: true,
     description:
-      'A job-search platform & CV builder with AI-assisted workflows. Track every application through its pipeline, keep one reusable career profile, and turn it into tailored CVs and cover letters. Live, with a free tier and Pro subscriptions.',
-    highlights: ['Pipeline & interview tracking', 'AI cover letters', 'CV builder', 'Search analytics'],
+      'A career platform that goes looking for the work, not just the paperwork. It scores live job openings against criteria you set and says why each one fits, then turns a single career profile into tailored CVs and cover letters — with every application tracked from applied to offer.',
+    highlights: ['Job matching, with reasons', 'AI cover letters', 'CV builder', 'Pipeline & interview tracking'],
   },
   {
     name: 'StoryMaker',
