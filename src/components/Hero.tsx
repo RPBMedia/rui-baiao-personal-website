@@ -119,6 +119,17 @@ export default function Hero({ onContact }: Props) {
                   width={480}
                   height={480}
                   loading="eager"
+                  // React 18 and TypeScript disagree about this prop and there is
+                  // no spelling that satisfies both: the SERVER renderer warns
+                  // "spell it as lowercase fetchpriority", while the JSX typings
+                  // reject the lowercase form (TS2322). Kept camelCase so `tsc`
+                  // passes.
+                  //
+                  // What actually ships: React emits it verbatim as
+                  // fetchPriority="high". That is not the spec spelling, but HTML
+                  // attribute names are case-insensitive at parse time, so
+                  // browsers still apply the priority hint. React 19 handles this
+                  // natively and the warning goes away with the upgrade.
                   fetchPriority="high"
                   decoding="async"
                   className="h-full w-full object-cover object-center"
