@@ -27,9 +27,14 @@ function CardBody({ project }: { project: Project }) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center gap-2.5">
           <h3 className="text-lg font-semibold text-paper">{project.name}</h3>
-          <span className="rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent-soft">
-            {project.tag}
-          </span>
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent-soft"
+            >
+              {tag}
+            </span>
+          ))}
           {project.status && (
             <span className="rounded-full border border-white/15 bg-white/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-silver">
               {project.status}
@@ -76,9 +81,14 @@ function FeaturedCard({ project }: { project: Project }) {
           <span className="rounded-full border border-accent/40 bg-accent/15 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent-soft">
             Featured
           </span>
-          <span className="rounded-full border border-white/15 bg-white/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-silver">
-            {project.tag}
-          </span>
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/15 bg-white/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-silver"
+            >
+              {tag}
+            </span>
+          ))}
           {project.url && (
             <ArrowUpRight
               width={18}

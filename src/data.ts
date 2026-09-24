@@ -315,7 +315,8 @@ export const creativeTags = [
 
 export interface Project {
   name: string
-  tag: string
+  /** One badge per tag, in order — e.g. MelodIQ is both Music and Game. */
+  tags: string[]
   /** Live URL, or null when not yet public. */
   url: string | null
   image: string
@@ -332,7 +333,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     name: 'CareerForger',
-    tag: 'Career',
+    tags: ['Career'],
     url: 'https://www.careerforger.app',
     image: '/projects/careerforger.jpg',
     featured: true,
@@ -342,7 +343,7 @@ export const projects: Project[] = [
   },
   {
     name: 'StoryMaker',
-    tag: 'Media',
+    tags: ['Media'],
     url: 'https://story-maker.app',
     image: '/projects/storymaker.jpg',
     description:
@@ -350,7 +351,7 @@ export const projects: Project[] = [
   },
   {
     name: 'MarketPulse',
-    tag: 'Fintech',
+    tags: ['Fintech'],
     url: 'https://market-pulse-rpb.vercel.app',
     image: '/projects/marketpulse.jpg',
     description:
@@ -358,7 +359,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Dinoria',
-    tag: 'Game',
+    tags: ['Game'],
     url: 'https://dinoria.app/',
     image: '/projects/dinoria.jpg',
     description:
@@ -366,7 +367,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Quizgard',
-    tag: 'Game',
+    tags: ['Game'],
     url: 'https://quizgard.lovable.app/',
     image: '/projects/quizgard.jpg',
     description:
@@ -374,7 +375,7 @@ export const projects: Project[] = [
   },
   {
     name: 'The Iron Codex',
-    tag: 'History',
+    tags: ['History'],
     url: 'https://www.theironcodex.org/',
     image: '/projects/ironcodex.jpg',
     description:
@@ -382,7 +383,7 @@ export const projects: Project[] = [
   },
   {
     name: 'MelodIQ',
-    tag: 'Music',
+    tags: ['Music', 'Game'],
     url: 'https://melodiq-main.vercel.app',
     image: '/projects/melodiq.jpg',
     description:
