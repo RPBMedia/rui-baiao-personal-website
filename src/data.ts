@@ -349,12 +349,12 @@ export const projects: Project[] = [
       'A video-generation app that assembles customized videos from your own audio and media, with transitions and effects.',
   },
   {
-    name: 'MarketMage',
+    name: 'MarketPulse',
     tag: 'Fintech',
-    url: 'https://marketmage.lovable.app/',
-    image: '/projects/marketmage.jpg',
+    url: 'https://market-pulse-rpb.vercel.app',
+    image: '/projects/marketpulse.jpg',
     description:
-      'A stock-tracking app that brings practical financial data and market analysis into one clean, focused dashboard.',
+      'A market tracker for private investors — hundreds of stocks and cryptocurrencies, the portfolio you actually hold imported from your broker, candlestick charts with fundamentals, and price alerts that reach your phone.',
   },
   {
     name: 'Dinoria',
