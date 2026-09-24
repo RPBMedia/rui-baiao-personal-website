@@ -381,13 +381,12 @@ export const projects: Project[] = [
       'A wiki-style archive of the European Middle Ages — kingdoms, battles, rulers, and relics from 476 to 1453.',
   },
   {
-    name: 'MealHack',
-    tag: 'Food',
-    url: null,
-    status: 'Coming soon',
-    image: '/projects/mealhack.jpg',
+    name: 'MelodIQ',
+    tag: 'Music',
+    url: 'https://melodiq-main.vercel.app',
+    image: '/projects/melodiq.jpg',
     description:
-      'A meal-planning app that turns your goals and what’s in your kitchen into a week of recipes and a ready-to-shop grocery list.',
+      'A name-that-tune game: hear a 30-second clip and name the song before the clock runs out — the faster the guess, the higher the score. Daily challenges, survival and speed modes, a leaderboard and head-to-head matches.',
   },
 ]
 
