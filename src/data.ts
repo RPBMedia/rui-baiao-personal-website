@@ -352,7 +352,7 @@ export const projects: Project[] = [
   {
     name: 'MarketPulse',
     tags: ['Fintech'],
-    url: 'https://market-pulse-rpb.vercel.app',
+    url: 'https://marketpulse.watch',
     image: '/projects/marketpulse-2026-09-28.jpg',
     description:
       'A market tracker for private investors — hundreds of stocks and cryptocurrencies, the portfolio you actually hold imported from your broker, candlestick charts with fundamentals, and price alerts that reach your phone.',
