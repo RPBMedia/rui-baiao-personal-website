@@ -344,10 +344,10 @@ export const projects: Project[] = [
   {
     name: 'StoryMaker',
     tags: ['Media'],
-    url: 'https://story-maker.app',
-    image: '/projects/storymaker.jpg',
+    url: 'https://www.story-maker.app',
+    image: '/projects/storymaker-2026-10-08.jpg',
     description:
-      'A video-generation app that assembles customized videos from your own audio and media, with transitions and effects.',
+      'A soundtrack-first video maker. Add a song, your photos and clips, and it fits them to the length of the music with motion, transitions, captions and ready-made templates — then renders the video right in your browser.',
   },
   {
     name: 'MarketPulse',
